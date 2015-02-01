@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>ELearning</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>TrxManagerServlet</display-name>
+    <servlet-name>TrxManagerServlet</servlet-name>
+    <servlet-class>com.elearning.web.servlet.TrxManagerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrxManagerServlet</servlet-name>
+    <url-pattern>/TrxManager</url-pattern>
+  </servlet-mapping>
+  <jsp-config>
+    <taglib>
+      <taglib-uri>/PageContent</taglib-uri>
+      <taglib-location>tlds/PageContentTag.tld</taglib-location>
+    </taglib>
+    <taglib>
+      <taglib-uri>/BasePath</taglib-uri>
+      <taglib-location>tlds/BasePathTag.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+  <servlet>
+    <description></description>
+    <display-name>DepartServlet</display-name>
+    <servlet-name>DepartServlet</servlet-name>
+    <servlet-class>com.elearning.web.servlet.DepartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DepartServlet</servlet-name>
+    <url-pattern>/DepartServlet</url-pattern>
+  </servlet-mapping>
+</web-app>

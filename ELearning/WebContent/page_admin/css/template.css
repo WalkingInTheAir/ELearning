@@ -1,0 +1,91 @@
+@CHARSET "UTF-8";
+input, button, select, textarea {
+	outline: none;
+}
+
+a:link, a:hover, a:visited, a:active{
+	text-decoration: none;
+}
+._navTitle {
+	display: block;
+	border: 1px solid;
+	width: 100%;
+	height: 40px;
+	padding: 8px 8px 8px 20px;
+	color: #fff;
+	background: #3385ff;
+}
+
+ ._navTitle:link,._navTitle:visited, ._navTitle:hover, ._navTitle:active{
+		color: #fff;
+}
+._navTitle:hover{
+	background: #2d78e4;
+}
+
+/*箭头靠右*/
+._navTitle .glyphicon {
+	float: right;
+	padding: 5px;
+}
+
+._sidePanel {
+	margin-bottom: 0;
+}
+
+._navlist {
+	text-align: center;
+	width: 98%;
+	padding-left: 1%;
+	background-color: #fff;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+	background-color: #fff;
+}
+
+._navlist>li>a {
+	display: block;
+	margin: 0 0 -1px;
+	padding: 8px 14px;
+	border: 1px solid #e5e5e5;
+}
+
+._navlist>li>a:hover {
+	color: #2d78e4;
+}
+
+._navlist>li:first-child>a {
+	-webkit-border-radius: 6px 6px 0 0;
+	-moz-border-radius: 6px 6px 0 0;
+	border-radius: 6px 6px 0 0;
+}
+
+._navlist>li:last-child>a {
+	-webkit-border-radius: 0 0 6px 6px;
+	-moz-border-radius: 0 0 6px 6px;
+	border-radius: 0 0 6px 6px;
+}
+
+._navlist>.active {
+	background: #eee;
+}
+
+#_content {
+	float: left;
+	width: 75%;
+	margin-top: 30px;
+	margin-left: 20px;
+	padding: 0;
+}
+
+
+.tab-pane{
+	margin-top:20px;
+}
+.tab-pane input[type="text"]{
+	max-width:300px;
+}
