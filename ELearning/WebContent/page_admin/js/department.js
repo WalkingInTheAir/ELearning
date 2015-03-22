@@ -36,8 +36,8 @@ $(function() {
 	
 	//隐藏修改院系tab
 	$(".nav li").click(function(){
-		if($(this).attr("id") != "mdfDepartsTab"){
-			$("#mdfDepartsTab").css("display", "none");
+		if($(this).attr("id") != "mdfDepartTab"){
+			$("#mdfDepartTab").css("display", "none");
 		}
 	});
 	
@@ -63,8 +63,8 @@ $(function() {
  * 修改院系信息
  */
 function _modifyDept(obj){
-	$("#mdfDepartsTab").css("display", "block");
-	$("#mdfDepartsTab a").tab("show");
+	$("#mdfDepartTab").css("display", "block");
+	$("#mdfDepartTab a").tab("show");
 	var deptId = $(obj).data("deptid");
 	var deptName = $(obj).data("deptname");
 	//传值

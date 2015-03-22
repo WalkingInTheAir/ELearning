@@ -20,7 +20,7 @@
 		<li role="presentation">
 			<a href="#addDeparts" role="tab" data-toggle="tab">批量添加</a>
 		</li>
-		<li role="presentation" id="mdfDepartsTab" style="display:none">
+		<li role="presentation" id="mdfDepartTab" style="display:none">
 			<a href="#modifyDepart" role="tab" data-toggle="tab">修改院系</a>
 		</li>
 	</ul>
