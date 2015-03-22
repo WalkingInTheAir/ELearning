@@ -42,19 +42,30 @@ $(function() {
 	});
 	
 	//修改院系信息
-	$("#mdfDepartBtn").click(function(){
+	$("#mdfDepartBtn").click(function() {
 		var $form = $("#MainForm");
 		var deptId = $("#mdf_departId").val();
 		var deptName = $("#mdf_departName").val().trim();
 		var origName = $("#mdf_departName").data("origname");
-		if(deptName == origName){
-			ShowMsg({type:"W", msg:"与原信息一致，请修改", title: "提示"});
+		if (deptName == origName) {
+			ShowMsg({
+				type : "W",
+				msg : "与原信息一致，请修改",
+				title : "提示"
+			});
 			return false;
 		}
-		var options = buildAjaxOptions('DepartServlet?method=modifyDept',
-				{deptId: deptId, deptName: deptName, ajaxPost : 'T'},
-				onMdfSuccessCallBack);
-		
+		var options = buildAjaxOptions('DepartServlet?method=modifyDept', {
+			deptId : deptId,
+			deptName : deptName,
+			ajaxPost : 'T'
+		}, function(resText, statusText, xhr, $form) {
+			if (resText.type == 'S') {
+				$("#showDepartsTab").trigger("click");
+			}
+			ShowMsg(resText);
+		});
+
 		$form.ajaxSubmit(options);
 	});
 });
@@ -93,13 +104,6 @@ function _deleteDept(obj) {
 		});
 		$form.ajaxSubmit(options);
 	}
-}
-//修改院系信息成功回调函数
-function onMdfSuccessCallBack(resText, statusText, xhr, $form){
-	if(resText.type=='S'){
-		$("#showDepartsTab").trigger("click");
-	}
-	ShowMsg(resText);
 }
 function beforeSubmit(){
 	//console.log($("#MainForm").length);
