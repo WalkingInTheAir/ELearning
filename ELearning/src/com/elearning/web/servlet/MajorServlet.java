@@ -37,9 +37,44 @@ public class MajorServlet extends BaseServlet {
 			this.addMajor(request, response);
 		}else if("deleteMajor".equals(method)){
 			this.deleteMajor(request, response);
+		}else if("modifyMajor".equals(method)){
+			this.modifyMajor(request, response);
 		}
 	}
 	
+	/**
+	 * 修改专业信息
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 */
+	private void modifyMajor(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		
+		String strDeptId = request.getParameter("deptId");
+		String strMajorId = request.getParameter("majorId");
+		String majorName = request.getParameter("majorName");
+		
+		ResultMessage result = null;
+		int deptId = -1;
+		int majorId = -1;
+		if(RegexUtil.isNumStr(strDeptId) && RegexUtil.isNumStr(strMajorId)){
+			deptId = Integer.parseInt(strDeptId);
+			majorId = Integer.parseInt(strMajorId);
+		}
+		if(deptId < 0 || majorId < 0 || StringUtils.isBlank(majorName)){
+			result = ResultMessageFactory.getErrorResult("参数异常，请稍后再试");
+		}else{
+			Major major = new Major();
+			major.setId(majorId);
+			major.setDept(new Department(deptId));
+			major.setName(majorName);
+			result = majorSev.modifyMajor(major);
+		}
+		
+		response.getWriter().println(result.toJSONObj());
+	}
+
 	/**
 	 * 删除院系
 	 * @param request

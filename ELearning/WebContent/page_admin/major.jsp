@@ -19,8 +19,8 @@
 		<li role="presentation" id="addMajorsTab">
 			<a href="#addMajors" role="tab" data-toggle="tab">批量添加</a>
 		</li>
-		<li role="presentation">
-			<a href="#settings" role="tab" data-toggle="tab">Settings</a>
+		<li role="presentation" id="mdfMajorTab" style="display:none">
+			<a href="#mdfMajor" role="tab" data-toggle="tab">修改专业信息</a>
 		</li>
 	</ul>
 
@@ -58,8 +58,8 @@
 							<td>${major.dept.name }</td>
 							<td>${major.name }</td>
 							<td>
-								<button type="button" class="btn btn-success btn-xs" data-majorid="${major.id }" data-deptid="${major.dept.id }" onclick="_modifyDept(this)">修改</button>
-								<button type="button" class="btn btn-danger  btn-xs" data-majorid="${major.id }" onclick="_deleteDept(this)">删除</button>
+								<button type="button" class="btn btn-success btn-xs" data-majorid="${major.id }" data-deptid="${major.dept.id }" data-majorname="${major.name }" onclick="_modifyMajor(this)">修改</button>
+								<button type="button" class="btn btn-danger  btn-xs" data-majorid="${major.id }" onclick="_deleteMajor(this)">删除</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -107,7 +107,27 @@
 				</div>
 			</div>
 		</div>
-		<div role="tabpanel" class="tab-pane fade" id="settings">...</div>
+		<div role="tabpanel" class="tab-pane fade" id="mdfMajor">
+			<div class="form-group">
+				<label for="departName" class="col-sm-2 control-label">院系名称</label>
+				<div class="col-sm-10">
+					<select class="form-control" style="width:auto;" id="deptName"></select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">专业名称</label>
+				<div class="col-sm-10">
+					<input type="hidden" id="mdf_majorId" />
+					<input type="text" class="form-control" id="mdf_majorName" name="mdf_majorName" placeholder="请设置专业名称" maxlength="15" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label"></label>
+				<div class="col-sm-5">
+					<input type="button" class="btn btn-primary" id="mdfMajorBtn" value="修改">
+				</div>
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript" src="page_admin/js/major.js"></script>
 </body>

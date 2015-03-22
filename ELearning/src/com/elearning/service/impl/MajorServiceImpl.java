@@ -51,4 +51,20 @@ public class MajorServiceImpl implements IMajorService {
 		return result;
 	}
 
+	@Override
+	public ResultMessage modifyMajor(Major major) {
+		ResultMessage result = null;
+		try {
+			if(dao.updateMajor(major)){
+				result = ResultMessageFactory.getSuccessResult("修改成功");
+			}else{
+				result = ResultMessageFactory.getWarningResult("修改失败，请重试");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = ResultMessageFactory.getErrorResult("系统异常，请联系我们");
+		}
+		return result;
+	}
+
 }

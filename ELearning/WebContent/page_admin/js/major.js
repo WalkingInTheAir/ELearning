@@ -1,6 +1,14 @@
 $(function() {
+	
+	//隐藏修改院系tab
+	$(".nav li").click(function(){
+		if($(this).attr("id") != "mdfMajorTab"){
+			$("#mdfMajorTab").css("display", "none");
+		}
+	});
+	
 	// 添加专业tab
-	$("#addMajorTab,#addMajorsTab").click(function() {
+	$("#addMajorTab,#addMajorsTab,#mdfMajorTab").click(function(event, params) {
 		
 		$(this).find("a:first").tab("show");
 		var $form = $("#MainForm");
@@ -16,6 +24,9 @@ $(function() {
 				$select.append($option);
 			});
 		});
+		if(params && params.options){
+			$.extend(true, options, params.options);
+		}
 		$form.ajaxSubmit(options);
 	});
 	
@@ -67,6 +78,39 @@ $(function() {
 		}, onNextPageSuccess);
 		$form.ajaxSubmit(options);
 	});
+	
+	//修改院系信息
+	$("#mdfMajorBtn").click(function() {
+		var $form = $("#MainForm");
+		var $select = $("#mdfMajor").find("#deptName");
+		var deptId = $select.val();
+		var origDeptId = $select.data("origid");
+		var majorName = $("#mdf_majorName").val().trim();
+		var origMajorName = $("#mdf_majorName").data("origname");
+		var majorId = $("#mdf_majorId").val();
+		if (deptId == origDeptId && majorName == origMajorName) {
+			ShowMsg({
+				type : "W",
+				msg : "与原信息一致，请修改",
+				title : "提示"
+			});
+			return false;
+		}
+		var options = buildAjaxOptions('MajorServlet?method=modifyMajor', {
+			deptId : deptId,
+			majorName : majorName,
+			majorId : majorId,
+			ajaxPost : 'T'
+		}, function(resText, statusText, xhr, $form) {
+			if (resText.type == 'S') {
+				$("#showMajorsTab").trigger("click");
+			}
+			ShowMsg(resText);
+		});
+
+		$form.ajaxSubmit(options);
+	});
+	
 });
 /**
  * 翻页后重置内容
@@ -86,9 +130,9 @@ function reBuildPageContent(currPage, pageSize, content){
 		 var td2 = $("<td>" + c.dept.name + "</td>");
 		 var td3 = $("<td>" + c.name + "</td>");
 		 var td4 = $("<td></td>");
-		 var modBtn = $("<button type=\"button\" class=\"btn btn-success btn-xs\" onclick=\"_modifyDept(this)\">修改</button>");
-		 modBtn.data("majorid", c.id).data("deptid", c.dept.id);
-		 var delBtn = $("<button type=\"button\" class=\"btn btn-danger btn-xs\" onclick=\"_deleteDept(this)\">删除</button>");
+		 var modBtn = $("<button type=\"button\" class=\"btn btn-success btn-xs\" onclick=\"_modifyMajor(this)\">修改</button>");
+		 modBtn.data("majorid", c.id).data("deptid", c.dept.id).data("majorname", c.name);
+		 var delBtn = $("<button type=\"button\" class=\"btn btn-danger btn-xs\" onclick=\"_deleteMajor(this)\">删除</button>");
 		 delBtn.data("majorid", c.id);
 		 td4.append(modBtn).append(delBtn);
 		 tr.append(td1).append(td2).append(td3).append(td4);
@@ -112,7 +156,7 @@ function pageBarOnClick(pageNo) {
  * 删除专业
  * @param obj
  */
-function _deleteDept(obj) {
+function _deleteMajor(obj) {
 	if (confirm("确认删除?")) {
 		var $form = $("#MainForm");
 		var majorId = $(obj).data("majorid");
@@ -128,9 +172,27 @@ function _deleteDept(obj) {
 			} else {
 				pageBarOnClick($("#currPage").val());
 			}
+			var $select = $(obj).parents(".tab-pane").eq(0).find("#deptName");
+			var origValue = $select.val();
 			onSuccessCallBack(resText, statusText, xhr, $form);
+			$select.val(origValue);
 		});
 		$form.ajaxSubmit(options);
 	}
+}
+
+function _modifyMajor(obj){
+	$("#mdfMajorTab").css("display", "block");
+	$("#mdfMajorTab a").tab("show");
+	$("#mdfMajorTab").trigger("click", {options:{async: false}});
+	//取值
+	var deptId = $(obj).data("deptid");
+	var majorId = $(obj).data("majorid");
+	var majorName = $(obj).data("majorname")
+	//赋值
+	var $select = $("#mdfMajor").find("#deptName");
+	$select.val(deptId).data("origid", deptId);
+	$("#mdf_majorName").val(majorName).data("origname", majorName);
+	$("#mdf_majorId").val(majorId);
 }
 

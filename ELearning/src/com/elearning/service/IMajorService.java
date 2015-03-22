@@ -14,4 +14,6 @@ public interface IMajorService {
 	public boolean addMajor(Major major) throws Exception;
 	
 	public ResultMessage deleteMajor(int majorId);
+	
+	public ResultMessage modifyMajor(Major major);
 }
