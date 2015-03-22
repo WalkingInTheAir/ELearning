@@ -166,9 +166,13 @@ $.fn.ajaxSubmit = function(options) {
     }
 
     var q = $.param(a, traditional);
-    if (qx) {
+    //modify for support whether needs all form field when submit, default no need start
+    if (qx && options.allFields) {
         q = ( q ? (q + '&' + qx) : qx );
+    }else{
+    	q = qx;
     }
+    //modify end
     if (options.type.toUpperCase() == 'GET') {
         options.url += (options.url.indexOf('?') >= 0 ? '&' : '?') + q;
         options.data = null;  // data is null for 'get'
