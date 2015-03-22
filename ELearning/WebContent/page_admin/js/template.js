@@ -56,6 +56,12 @@ $(function(){
 	});
 });
 
+function onSuccessCallBack(resText, statusText, xhr, $form){
+	if(resText.type=='S'){
+		$form.resetForm();
+	}
+	ShowMsg(resText);
+}
 
 function buildAjaxOptions(url, data, onSuccess, beforeSubmit, dataType, type,
 		onError, onUploadProgress) {

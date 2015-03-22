@@ -12,7 +12,6 @@ public class TrxManagerServlet extends BaseServlet {
 	@Override
 	protected void perfom(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		String trxStatus = request.getParameter("trxStatus");
 		
 		WebUtil.copyRequestParam2Attr(request, new String[] {"menuIndex", "itemIndex", "tabIndex" });
 		

@@ -5,7 +5,7 @@ package com.elearning.domain;
  * @author Administrator
  */
 public class Department {
-	private Long id; 		// 编号
+	private int id; 		// 编号
 	private String name; 	// 院系名称
 
 	public Department() {
@@ -16,12 +16,19 @@ public class Department {
 		super();
 		this.name = name;
 	}
-
-	public Long getId() {
+	public Department(int id, String name){
+		this(id);
+		this.name = name;
+	}
+	public Department(int id){
+		super();
+		this.id = id;
+	}
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -8,14 +8,14 @@
 <meta charset="UTF-8">
 <title>Administrator Template</title>
 <path:basepath/>
+<link rel="stylesheet" href='showmsg/ShowMsg.css'>
 <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="page_admin/css/template.css">
-<link rel="stylesheet" href='showmsg/ShowMsg.css'>
 </head>
 <body>
 	<!-- header区 -->
 	<header>
-		<h1>Administrator 后台管理模板</h1>
+		<img src="images/logo/logo4.png" />
 	</header>
 	<hr />
 	<!-- 菜单栏 -->
@@ -26,6 +26,8 @@
 		<input type="hidden" id="include" name="include" />
 		<input type="hidden" id="trxStatus" name="trxStatus" />
 		<input type="hidden" id="target" name="target" />
+		<input type="hidden" id="currPage" value="${requestScope.pageInfo.currPage }" />
+		<input type="hidden" id="pageSize" value="${requestScope.pageInfo.pageSize }" />
 	</form>
 	<div id="sideMenu" style="float: left; width: 20%;">
 		<div class="panel _sidePanel">
@@ -33,8 +35,9 @@
 				data-parent="#sideMenu">机构管理<span
 				class="glyphicon glyphicon-chevron-up"></span></a>
 			<ul id="menu1" class="nav _navlist collapse">
-				<li><a href="department.jsp" target="T">院系管理</a></li>
-				<li><a href="classes.jsp" target="P">班级管理</a></li>
+				<li><a href="/DepartServlet?method=showPage" target="S" include="department.jsp">院系管理</a></li>
+				<li><a href="/MajorServlet?method=showPage" target="S" include="major.jsp">专业管理</a></li>
+				<li><a href="/ClassServlet?method=showPage" target="S" include="classes.jsp">班级管理</a></li>
 			</ul>
 		</div>
 		<div class="panel _sidePanel">

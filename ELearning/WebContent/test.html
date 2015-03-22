@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="plugin/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="showmsg/ShowMsg.js"></script>
+<link rel="stylesheet" href="showmsg/ShowMsg.css"/>
+</head>
+<body>
+<div id="d" style="position:absolute; bottom:0px; margin-left:auto;width:200px; height:200px; background:#eee"></div>
+<script type="text/javascript">
+	$(function(){
+		var jsonData = {"title":"提示", "type":"i", "msg":"修改成功！！"};
+		ShowMsg(jsonData);
+	});
+</script>
+</body>
+</html>

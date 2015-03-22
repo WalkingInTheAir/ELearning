@@ -1,9 +1,16 @@
-package com.elearning.web.bean;
-
+package com.core.showmsg.bean;
+/**
+ * 信息的基础类型
+ * @author BlackHorse
+ * @version 1.0
+ */
 public enum ResultType {
 
-	SUCCESS("S"), FAILURE("F"), ERROR("E");
-	
+	SUCCESS("S"), 
+	INFO("I"), 
+	ERROR("E"), 
+	WARNING("W");
+
 	private String type;
 
 	private ResultType(String type) {
