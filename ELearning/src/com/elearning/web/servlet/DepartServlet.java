@@ -31,6 +31,7 @@ import com.elearning.domain.Department;
 import com.elearning.service.IDepartService;
 import com.elearning.service.impl.DepartServiceImpl;
 import com.elearning.upload.util.UploadExcelToBeanFactory;
+import com.elearning.upload.util.UploadExcelUtil;
 
 
 public class DepartServlet extends BaseServlet{
@@ -243,30 +244,8 @@ public class DepartServlet extends BaseServlet{
 					if (null == cell) {
 						continue;
 					}
-					int cellType = cell.getCellType();
-					String value = "";
-					switch (cellType) {
-					case Cell.CELL_TYPE_BOOLEAN:
-						value = String.valueOf(cell.getBooleanCellValue());
-						break;
-					case Cell.CELL_TYPE_NUMERIC:
-						value = String.valueOf(cell.getNumericCellValue());
-						break;
-					case Cell.CELL_TYPE_STRING:
-						value = cell.getStringCellValue();
-						break;
-					case Cell.CELL_TYPE_BLANK:
-						;
-					case Cell.CELL_TYPE_ERROR:
-						;
-					case Cell.CELL_TYPE_FORMULA:
-						;
-					default:
-						value = "";
-						break;
-					}
+					String value = UploadExcelUtil.getCellValue(cell);
 					rowValue.add(value);
-					System.out.print(value + " ");
 				}
 				if (!rowValue.isEmpty()) {
 					sheetValue.add(rowValue);
