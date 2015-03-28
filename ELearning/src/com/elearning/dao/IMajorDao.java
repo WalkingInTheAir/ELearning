@@ -11,6 +11,6 @@ public interface IMajorDao {
 	public boolean deleteMajor(int id) throws Exception;
 	public boolean updateMajor(Major m) throws Exception;
 	public boolean isExist(Major m) throws Exception;
-	public List<Major> getMajorsByCondition(String condition, Object[] params) throws Exception;
+	public List<Major> getMajorsToList(String condition, Object[] params) throws Exception;
 	public PageContent<Major> getMajors(String condition, Object[] params, PageInfo pageInfo) throws Exception;
 }

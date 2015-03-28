@@ -24,7 +24,7 @@ public class MajorServiceImpl implements IMajorService {
 	@Override
 	public boolean isExist(int deptId, String majorName) throws Exception {
 		List<Major> majors = dao
-				.getMajorsByCondition(" F_DEPT_ID = ? and MAJOR_NAME = ?",
+				.getMajorsToList(" F_DEPT_ID = ? and MAJOR_NAME = ?",
 						new Object[] { deptId, majorName });
 
 		return majors.size() > 0;

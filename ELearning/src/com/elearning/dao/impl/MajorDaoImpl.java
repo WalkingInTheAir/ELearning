@@ -79,7 +79,7 @@ public class MajorDaoImpl extends ABaseDao implements IMajorDao {
 	}
 
 	@Override
-	public List<Major> getMajorsByCondition(String condition, Object[] params)
+	public List<Major> getMajorsToList(String condition, Object[] params)
 			throws Exception {
 		StringBuffer sb = new StringBuffer("SELECT * FROM TB_MAJOR m, TB_DEPARTMENT d ");
 		if (!StringUtils.isBlank(condition) && null != params) {
