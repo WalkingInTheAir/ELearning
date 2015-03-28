@@ -5,6 +5,13 @@ public class Major {
 	private String name;
 	private Department dept;
 
+	public Major(){
+		super();
+	}
+	public Major(int id){
+		this();
+		this.id = id;
+	}
 	public int getId() {
 		return id;
 	}
