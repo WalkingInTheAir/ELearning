@@ -39,9 +39,33 @@ public class MajorServlet extends BaseServlet {
 			this.deleteMajor(request, response);
 		}else if("modifyMajor".equals(method)){
 			this.modifyMajor(request, response);
+		}else if("addMajors".equals(method)){
+			this.addMajors(request, response);
 		}
 	}
 	
+	/**
+	 * 批量添加专业信息
+	 * @param request
+	 * @param response
+	 */
+	private void addMajors(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		ResultMessage result = null;
+		String strDeptId = request.getParameter("deptId");
+		int deptId = -1;
+		if(RegexUtil.isNumStr(strDeptId)){
+			deptId = Integer.parseInt(strDeptId);
+		}
+		
+		if(deptId < 0){
+			result = ResultMessageFactory.getWarningResult("参数异常，请重试");
+		}else{
+			
+		}
+	}
+
 	/**
 	 * 修改专业信息
 	 * @param request
@@ -166,13 +190,13 @@ public class MajorServlet extends BaseServlet {
 		try {
 			
 			PageContent<Major> majors = majorSev.showMajors(conditions, params, page);
-			List<Department> depts = deptSev.getDeparts(null, null);
 			
 			String isAjaxPost = request.getParameter("ajaxPost");
 			//翻页采用ajax
 			if(null != isAjaxPost && "T".equals(isAjaxPost)){
 				response.getWriter().print(majors.toJSONObj());
 			}else{
+				List<Department> depts = deptSev.getDeparts(null, null);
 				request.setAttribute("cata", majors);
 				request.setAttribute("filter", depts);
 				request.setAttribute("pageInfo", majors.getPage());
