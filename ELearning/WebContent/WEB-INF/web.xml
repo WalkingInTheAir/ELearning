@@ -36,6 +36,12 @@
 		<servlet-name>MajorServlet</servlet-name>
 		<servlet-class>com.elearning.web.servlet.MajorServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description></description>
+		<display-name>CourseTypeServlet</display-name>
+		<servlet-name>CourseTypeServlet</servlet-name>
+		<servlet-class>com.elearning.web.servlet.CourseTypeServlet</servlet-class>
+	</servlet>
 	<jsp-config>
 		<taglib>
 			<taglib-uri>/PageContent</taglib-uri>
@@ -65,5 +71,9 @@
 	<servlet-mapping>
 		<servlet-name>MajorServlet</servlet-name>
 		<url-pattern>/MajorServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CourseTypeServlet</servlet-name>
+		<url-pattern>/CourseTypeServlet</url-pattern>
 	</servlet-mapping>
 </web-app>
