@@ -37,6 +37,9 @@ function onNextPageSuccess(resText, statusText, xhr, $form){
 	$("#pageSize").val(pageSize);
 	//重置翻页栏
 	reBuildPageBar(currPage, totalPage);
+	if(typeof reBuildFilter == 'function'){
+		reBuildFilter(resText.filter);
+	}
 	//添加接口方法
 	if(typeof reBuildPageContent == 'function'){
 		reBuildPageContent(currPage, pageSize, content);
