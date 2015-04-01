@@ -42,6 +42,18 @@
 		<servlet-name>CourseTypeServlet</servlet-name>
 		<servlet-class>com.elearning.web.servlet.CourseTypeServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description></description>
+		<display-name>CourseServlet</display-name>
+		<servlet-name>CourseServlet</servlet-name>
+		<servlet-class>com.elearning.web.servlet.CourseServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description></description>
+		<display-name>TeacherServlet</display-name>
+		<servlet-name>TeacherServlet</servlet-name>
+		<servlet-class>com.elearning.web.servlet.TeacherServlet</servlet-class>
+	</servlet>
 	<jsp-config>
 		<taglib>
 			<taglib-uri>/PageContent</taglib-uri>
@@ -75,5 +87,13 @@
 	<servlet-mapping>
 		<servlet-name>CourseTypeServlet</servlet-name>
 		<url-pattern>/CourseTypeServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CourseServlet</servlet-name>
+		<url-pattern>/CourseServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TeacherServlet</servlet-name>
+		<url-pattern>/TeacherServlet</url-pattern>
 	</servlet-mapping>
 </web-app>

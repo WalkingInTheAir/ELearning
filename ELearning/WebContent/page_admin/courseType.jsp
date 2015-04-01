@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>专业管理</title>
+<title>课程类型管理</title>
 </head>
 <body>
 	<ul class="nav nav-tabs" role="tablist">
