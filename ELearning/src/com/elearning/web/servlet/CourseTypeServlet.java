@@ -121,7 +121,7 @@ public class CourseTypeServlet extends BaseServlet {
 
 	private void addTypes(HttpServletRequest request,
 			HttpServletResponse response) {
-
+		//TODO
 	}
 
 	private void addType(HttpServletRequest request,

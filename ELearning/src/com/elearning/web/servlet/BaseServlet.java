@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * Servlet顶级父类 所有Servlet都必须继承该类，并实现抽象方法
  * 
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public abstract class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	protected String method;
 	public BaseServlet() {
 		super();
 	}
@@ -29,6 +31,10 @@ public abstract class BaseServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		this.method = request.getParameter("method");
+		if(StringUtils.isBlank(method)){
+			//GOTO ERROR PAGE;
+		}
 		try {
 			this.perfom(request, response);
 		} catch (Exception e) {

@@ -31,7 +31,6 @@ public class ClassServlet extends BaseServlet {
 	protected void perfom(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		String method = request.getParameter("method");
 		if ("showPage".equals(method)) {
 			this.showPage(request, response);
 		}else if("addClass".equals(method)){

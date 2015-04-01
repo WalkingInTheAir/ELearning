@@ -30,7 +30,6 @@ public class MajorServlet extends BaseServlet {
 	protected void perfom(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		String method = request.getParameter("method");
 		if("showPage".equals(method)){
 			this.showPage(request, response);
 		}else if("addMajor".equals(method)){

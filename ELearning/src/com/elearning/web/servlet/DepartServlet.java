@@ -42,7 +42,6 @@ public class DepartServlet extends BaseServlet{
 	protected void perfom(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		String method = request.getParameter("method");
 		if("addDepart".equals(method)){
 			addDepart(request, response);
 		}else if("addDeparts".equals(method)){
