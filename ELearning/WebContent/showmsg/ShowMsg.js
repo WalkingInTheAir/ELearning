@@ -13,7 +13,7 @@ var ShowMsg = function(jsonData) {
 	
 	var $showMsgBox = $("#ShowMsgBox");
 
-	var msgClass = getMsgClass(jsonData.type);
+	var msgClass = getMsgClass(jsonData.type.toUpperCase());
 	var title = jsonData.title || '提示';
 	var content = jsonData.msg;
 	if ($showMsgBox.length > 0) {
