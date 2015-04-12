@@ -128,7 +128,7 @@ public class ClassServlet extends BaseServlet {
 				}else{
 					Clas clas = new Clas();
 					clas.setName(className);
-					clas.setMajor(new Major(majorId, null, new Department(deptId)));
+					clas.setMajor(new Major(majorId));
 					result = clasServ.addClass(clas);
 				}
 			}

@@ -8,9 +8,12 @@ public class CourseType {
 		super();
 	}
 	public CourseType(int typeId, String typeName) {
+		this(typeId);
+		this.name = typeName;
+	}
+	public CourseType(int typeId){
 		this();
 		this.id = typeId;
-		this.name = typeName;
 	}
 
 	public int getId() {

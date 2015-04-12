@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="path" uri="/BasePath"%>
 <%@ taglib prefix="page" uri="/PageContent" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +16,14 @@
 <body>
 	<!-- header区 -->
 	<header>
-		<img src="images/logo/logo4.png" />
+		<div id="logoDiv"> </div>
+		<h3 id="title1"></h3>	
+		<div id="loginInfoDiv">
+			<span id="loginInfo"><span class="glyphicon glyphicon-user"></span><c:out value="${sessionScope.user.num }"> </c:out></span>
+			<span id="logout"><span class="glyphicon glyphicon glyphicon-off"></span><a href="#">退出</a></span>
+		</div>	
 	</header>
-	<hr />
+	<hr id="headerHr"/>
 	<!-- 菜单栏 -->
 	<form id="MenuForm" name="MenuForm" action="TrxManager" method="post" class="form-horizontal" role="form">
 		<input type="hidden" id="menuIndex" name="menuIndex" />
@@ -35,44 +41,37 @@
 				data-parent="#sideMenu">机构管理<span
 				class="glyphicon glyphicon-chevron-up"></span></a>
 			<ul id="menu1" class="nav _navlist collapse">
-				<li><a href="/DepartServlet?method=showPage" target="S" include="department.jsp">院系管理</a></li>
-				<li><a href="/MajorServlet?method=showPage" target="S" include="major.jsp">专业管理</a></li>
-				<li><a href="/ClassServlet?method=showPage" target="S" include="classes.jsp">班级管理</a></li>
+				<li><a href="/DepartServlet?method=showPage" target="S" data-include="department.jsp">院系管理</a></li>
+				<li><a href="/MajorServlet?method=showPage" target="S" data-include="major.jsp">专业管理</a></li>
+				<li><a href="/ClassServlet?method=showPage" target="S" data-include="classes.jsp">班级管理</a></li>
 			</ul>
 		</div>
 		<div class="panel _sidePanel">
 			<a href="#menu2" class="collapsed _navTitle" data-toggle="collapse"
-				data-parent="#sideMenu">用户管理<span
+				data-parent="#sideMenu">人员管理<span
 				class="glyphicon glyphicon-chevron-up"></span></a>
 			<ul id="menu2" class="nav _navlist collapse">
-				<li><a href="">增加用户</a></li>
-				<li><a href="modifyEmployee.jsp">修改用户</a></li>
-				<li><a href="">删除用户</a></li>
-				<li><a href="">用户列表</a></li>
+				<li><li><a href="/TeacherServlet?method=showPage" target="S">教师管理</a></li>
+				<li><a href="/StudentServlet?method=showPage" target="S">学生管理</a></li>
 
 			</ul>
 		</div>
 		<div class="panel _sidePanel">
 			<a href="#menu3" class="collapsed _navTitle" data-toggle="collapse"
-				data-parent="#sideMenu">用户管理<span
+				data-parent="#sideMenu">课程管理<span
 				class="glyphicon glyphicon-chevron-up"></span></a>
 			<ul id="menu3" class="nav _navlist collapse">
-				<li><a href="#">增加用户</a></li>
-				<li><a href="#">修改用户</a></li>
-				<li><a href="#">删除用户</a></li>
-				<li><a href="#">用户列表</a></li>
-
+				<li><a href="/CourseTypeServlet?method=showPage" target="S">课程类型管理</a></li>
+				<li><a href="/CourseServlet?method=showPage" target="S">课程管理</a></li>
+				<li><a href="/page_admin/asignTeacher.jsp" target="T">教师分配</a></li>
 			</ul>
 		</div>
 		<div class="panel _sidePanel">
 			<a href="#menu4" class="collapsed _navTitle" data-toggle="collapse"
-				data-parent="#sideMenu">用户管理<span
+				data-parent="#sideMenu">安全设置<span
 				class="glyphicon glyphicon-chevron-up"></span></a>
 			<ul id="menu4" class="nav _navlist collapse">
-				<li><a href="#">增加用户</a></li>
-				<li><a href="#">修改用户</a></li>
-				<li><a href="#">删除用户</a></li>
-				<li><a href="#">用户列表</a></li>
+				<li><a href="#">密码管理</a></li>
 			</ul>
 		</div>
 	</div>

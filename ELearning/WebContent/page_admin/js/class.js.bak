@@ -39,7 +39,7 @@ $(function(){
 	})
 	//添加班级的院系下拉框
 	$("#addClass #deptName").change(function(){
-		var deptId = parseInt($(this).val());
+		var deptId = $(this).val();
 		var $select = $(this).parent().parent().next().find("#majorName");
 		if(deptId == -1){
 			$select.empty();
@@ -55,10 +55,10 @@ $(function(){
 			if(majors.length == 0){
 				alertMsg("该院系下还没有设置专业");
 			}
-			$select.append("<option value=\"-1\">--请选择专业--</option>");
 			$.each(majors, function(index, c){
 				var $option = $("<option></option>");
-				$option.val(c.id).text(c.name);
+				//DEBUG
+				$option.val(c.id).text(c.name).data("deptid", c.dept.id);
 				$select.append($option);
 			});
 		});
@@ -68,16 +68,13 @@ $(function(){
 	//点击添加班级按钮
 	$("#addClassBtn").click(function(){
 		var major = $(this).parent().parent().parent().find("#majorName");
-		var dept = $(this).parent().parent().parent().find("#deptName");
 		var majorId = -1;
 		//debug
 		var deptId = -1;
 		var className = $(this).parent().parent().parent().find("#className").val();
-		if(major.length > 0 && major.val()){
-			majorId = parseInt(major.val());
-		}
-		if(dept.length > 0 && dept.val()){
-			deptId = parseInt(dept.val());
+		if(major.length > 0 && major.val() != null){
+			majorId = major.val();
+			deptId = major.data("deptid");
 		}
 		//debug
 		if(deptId < 0){
@@ -96,7 +93,6 @@ $(function(){
 		var $form = $("#MainForm");
 		var options = buildAjaxOptions('ClassServlet?method=addClass', {
 			ajaxPost : 'T',
-			deptId: deptId,
 			majorId : majorId,
 			className : className
 		}, onSuccessCallBack);

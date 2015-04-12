@@ -1,5 +1,7 @@
 package com.elearning.service;
 
+import java.util.List;
+
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
 import com.core.showmsg.bean.ResultMessage;
@@ -16,4 +18,6 @@ public interface ICourseTypeService {
 	public ResultMessage modifyType(CourseType type);
 
 	public ResultMessage deleteType(int typeId);
+	
+	public List<CourseType> getTypes(String conditions, Object[] params);
 }

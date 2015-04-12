@@ -1,13 +1,8 @@
 package com.elearning.web.servlet;
 
 import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-
-
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
 import com.core.regex.util.RegexUtil;
@@ -89,7 +84,7 @@ public class CourseTypeServlet extends BaseServlet {
 	}
 
 	private void showTypes(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
 
 		PageInfo page = new PageInfo();
 		String currPageStr = request.getParameter("currPage");

@@ -26,9 +26,10 @@ header{
 }
 #loginInfoDiv{
 	height:100%;
-	width:400px;
 	float:right;
-	border:1px solid;
+}
+#loginInfoDiv #loginInfo, #loginInfoDiv #logout{
+	margin-right:40px;
 }
 #headerHr, hr{
 	margin-top:0px;

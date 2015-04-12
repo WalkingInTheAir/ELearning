@@ -12,7 +12,7 @@ $(function(){
 		var target = $(this).find("a:first");
 		target.tab("show");
 		var $form = $("#MainForm");
-		var deptSelect = $(target.attr("href")).find("#mdfName");
+		var deptSelect = $(target.attr("href")).find("#deptName");
 		var options = buildAjaxOptions('DepartServlet?method=showPage', {
 			ajaxPost : 'T'
 		}, function(resText, statusText, xhr, $form){
@@ -195,6 +195,6 @@ function _modifyTeacher(obj){
 	teacherNameObj.val(teacherName).data("origvalue", teacherName).data("teacherid", teacherId);
 	var teacherNumObj = $("#mdfTeacher").find("#teacherNum");
 	teacherNumObj.val(teacherNum);
-	var deptNameObj = $("#mdfTeacher").find("#mdfName");
+	var deptNameObj = $("#mdfTeacher").find("#deptName");
 	deptNameObj.val(deptId);
 }

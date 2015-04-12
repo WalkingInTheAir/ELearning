@@ -1,5 +1,7 @@
 package com.elearning.service.impl;
 
+import java.util.List;
+
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
 import com.core.showmsg.bean.ResultMessage;
@@ -97,4 +99,16 @@ public class CourseTypeServiceImpl implements ICourseTypeService{
 		}
 		return rm;
 	}
+
+	@Override
+	public List<CourseType> getTypes(String conditions, Object[] params) {
+		
+		try {
+			return dao.queryList(conditions, params);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }

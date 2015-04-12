@@ -2,8 +2,8 @@ $(function() {
 	
 	//隐藏修改院系tab
 	$(".nav li").click(function(){
-		if($(this).attr("id") != "mdfMajorTab"){
-			$("#mdfMajorTab").css("display", "none");
+		if($(this).attr("id") != "mdfTeacherTab"){
+			$("#mdfTeacherTab").css("display", "none");
 		}
 	});
 	

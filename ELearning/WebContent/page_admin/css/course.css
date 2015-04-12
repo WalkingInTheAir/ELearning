@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+.col-md-4 {
+/* 	border : 1px solid;
+ */	height: 100%;
+}
+
+.candidateDiv {
+	height: 100%;
+	width: 60%;
+	margin-left: 30%;
+	overflow-y:scroll;
+}
+.candidateDiv li{
+	list-style-type: none;
+}
+.b, .c {
+	display: none;
+}
+.switch{
+	background: #ddd;
+	color:#fff;
+}

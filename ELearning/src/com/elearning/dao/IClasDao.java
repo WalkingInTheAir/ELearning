@@ -20,6 +20,8 @@ public interface IClasDao {
 			PageInfo pageInfo) throws Exception;
 	
 	public List<Clas> getClassesToList(String conditions, Object[] params) throws Exception;
+	
+	public List<Integer> getClsIdsToList(String conditions, Object[] params) throws Exception;
 
 	boolean isExist(int majorId, String className) throws Exception;
 }

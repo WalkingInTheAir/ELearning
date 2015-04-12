@@ -102,13 +102,17 @@ public class TeacherServlet extends BaseServlet{
 			params = new Object[]{deptId};
 		}
 		try {
+			String req4List = request.getParameter("forList");
+			if(RegexUtil.isTrue(req4List)){
+				page.setPageSize(100);
+			}
 			PageContent<Teacher> teachers = this.teaSer.getTeachers(conditions, params, page);
 			String isAjaxPost = request.getParameter("ajaxPost");
-			List<Department> depts = this.deptSer.getDeparts(null, null);
 			// 翻页采用ajax
 			if (null != isAjaxPost && "T".equals(isAjaxPost)) {
 				response.getWriter().print(teachers.toJSONObj());
 			} else {
+				List<Department> depts = this.deptSer.getDeparts(null, null);
 				request.setAttribute("filter", depts);
 				request.setAttribute("cata", teachers);
 				request.setAttribute("pageInfo", teachers.getPage());

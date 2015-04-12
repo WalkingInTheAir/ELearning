@@ -1,6 +1,8 @@
 package com.elearning.service.impl;
 
 
+import java.util.List;
+
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
 import com.core.showmsg.bean.ResultMessage;
@@ -82,6 +84,16 @@ public class ClasServiceImpl implements IClasService {
 			rm = ResultMessageFactory.getErrorResult("系统异常，请联系我们");
 		}
 		return rm;
+	}
+	@Override
+	public List<Integer> getClsIds(String conditions, Object[] params) {
+		
+		try {
+			return dao.getClsIdsToList(conditions, params);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

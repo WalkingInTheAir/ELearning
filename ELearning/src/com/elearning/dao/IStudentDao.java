@@ -10,4 +10,5 @@ public interface IStudentDao {
 	public PageContent<Student> getStudents(String conditions, Object[] params, PageInfo page) throws Exception;
 	public int deleteStudent(int stuId) throws Exception;
 	public int modifyStudent(Student stu) throws Exception;
+	public boolean isExist(String stuNum) throws Exception;
 }

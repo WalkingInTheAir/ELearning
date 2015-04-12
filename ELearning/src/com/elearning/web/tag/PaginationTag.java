@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.jsp.JspException;
 
-import com.core.path.util.PathUtil;
 
 public class PaginationTag extends BaseTag {
 	private static final long serialVersionUID = 1L;

@@ -50,6 +50,7 @@ public class CourseTypeDaoImpl extends ABaseDao implements ICourseTypeDao{
 		if (!StringUtils.isBlank(conditions) && null != params) {
 			sb.append(" WHERE ").append(conditions);
 		}
+		sb.append(" ORDER BY CT_ID ASC");
 		return super.queryToList(sb.toString(), params, this.conv);
 	}
 
@@ -61,12 +62,13 @@ public class CourseTypeDaoImpl extends ABaseDao implements ICourseTypeDao{
 		if (!StringUtils.isBlank(conditions) && null != params) {
 			sb.append(" WHERE ").append(conditions);
 		}
+		sb.append(" ORDER BY CT_ID ASC");
 		return super.queryToBean(sb.toString(), params, this.conv);
 	}
 
 	@Override
 	public PageContent<CourseType> getPage(PageInfo page) throws Exception {
-		String sql = "SELECT * FROM TB_COURSETYPE";
+		String sql = "SELECT * FROM TB_COURSETYPE ORDER BY CT_ID ASC";
 		return DBManager.queryByPagination(sql, this.conv, page);
 	}
 

@@ -1,10 +1,6 @@
 package com.elearning.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -46,68 +42,10 @@ public class ClasDaoImpl extends ABaseDao implements IClasDao {
 
 	@Override
 	public int addClas(Clas clas) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			String insertSql = "INSERT INTO TB_CLASS VALUES(NULL, ?, ?)";
-			conn = DBManager.getConnection();
-			conn.setAutoCommit(false);
-			pstmt = conn.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS);
-			pstmt.setObject(1, clas.getName());
-			pstmt.setObject(2, clas.getMajor().getId());
-			int rows = pstmt.executeUpdate();
-			if (rows < 1) {
-				throw new Exception();
-			}
-			rs = pstmt.getGeneratedKeys();
-			int genKey = -1;
-			while (rs.next()) {
-				genKey = rs.getInt(1);
-			}
-			if (genKey == -1) {
-				throw new Exception();
-			}
-			pstmt.close();
-			rs.close();
-			String sql ="SELECT COURSE_ID FROM TB_COURSE WHERE (F_CT_ID = 1 AND F_RELATIVE_ID IS NULL)"
-					+ " OR (F_CT_ID = 2 AND F_RELATIVE_ID = ?)"
-					+ " OR (F_CT_ID = 3 AND F_RELATIVE_ID = ?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, clas.getMajor().getDept().getId());
-			pstmt.setInt(2, clas.getMajor().getId());
-			List<Integer> courseIds = new ArrayList<Integer>();
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				courseIds.add(rs.getInt(1));
-			}
-			pstmt.close();
-			rs.close();
-			String batchSql = "INSERT INTO TB_TEACHER_COURSE_CLASS VALUES(NULL, NULL, ?, ?)";
-			pstmt = conn.prepareStatement(batchSql);
-			if(null != courseIds){
-				for(int i=0, len=courseIds.size(); i<len; i++){
-					int courseId = courseIds.get(i);
-					pstmt.setInt(1, courseId);
-					pstmt.setInt(2, genKey);
-					pstmt.addBatch();
-					if((i+1)%30 == 0){			//防止内存溢出
-						pstmt.executeBatch();
-						pstmt.clearBatch();
-					}
-				}
-				pstmt.executeBatch();
-				conn.commit();
-			}
-		} catch (Exception e) {
-			System.out.println("******SQL LOG****** add class Exception----ROLLBACK");
-			conn.rollback();
-			throw e;
-		}finally{
-			DBManager.close(conn, pstmt, rs);
-		}
-		
-		return 1;
+		//debug
+
+		return super.add("INSERT INTO TB_CLASS VALUES(NULL, ?, ?)",
+				new Object[] { clas.getName(), clas.getMajor().getId() });
 	}
 
 	@Override

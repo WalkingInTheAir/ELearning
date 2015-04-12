@@ -101,8 +101,8 @@
 		<div role="tabpanel" class="tab-pane fade" id="mdfTeacher">
 			<div class="form-group">
 				<label for="deptName" class="col-sm-2 control-label">院系名称</label>
-				<div class="col-sm-2">
-					<select id="mdfName" name="mdfName" class="form-control"></select>
+				<div class="col-sm-3">
+					<select id="deptName" name="deptName" class="form-control"></select>
 				</div>
 			</div>
 			<div class="form-group">

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.core.path.util.WebUtil;
+import com.elearning.domain.User;
 
 public class TrxManagerServlet extends BaseServlet {
 
@@ -25,13 +26,21 @@ public class TrxManagerServlet extends BaseServlet {
 		
 		String target = (String) request.getAttribute("target");
 		String url = (String) request.getAttribute("include");
-		String template = "/page_admin/template.jsp";	//TODO
+		String template = null;	
+		User u = (User) request.getSession().getAttribute("user");
+		if("A".equals(u.getRole())){
+			template = "/page_admin/template.jsp";
+		}else if("T".equals(u.getRole())){
+			template = "page_teacher/template.jsp";
+		}
 		
 		if("S".equalsIgnoreCase(target)){
 			super.invokeServlet(request, response, url);
 		}else if("P".equalsIgnoreCase(target)){
 			super.gotoPage(request, response, url);
 		}else if("T".equalsIgnoreCase(target)){
+			super.gotoTemplatePage(request, response, template);
+		}else {
 			super.gotoTemplatePage(request, response, template);
 		}
 	}

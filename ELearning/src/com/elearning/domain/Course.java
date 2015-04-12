@@ -4,10 +4,12 @@ public class Course {
 
 	private int id;
 	private String name;
-
+	private String relativeId;
+	private String relativeName;
 	private CourseType ct;
 	private Department dept;
-
+	private Teacher teacher;
+	private Clas clas;
 	public int getId() {
 		return id;
 	}
@@ -40,4 +42,36 @@ public class Course {
 		this.dept = dept;
 	}
 
+	public String getRelativeId() {
+		return relativeId;
+	}
+
+	public void setRelativeId(String relativeId) {
+		this.relativeId = relativeId;
+	}
+
+	public String getRelativeName() {
+		return relativeName;
+	}
+
+	public void setRelativeName(String relativeName) {
+		this.relativeName = relativeName;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Clas getClas() {
+		return clas;
+	}
+
+	public void setClas(Clas clas) {
+		this.clas = clas;
+	}
+	
 }
