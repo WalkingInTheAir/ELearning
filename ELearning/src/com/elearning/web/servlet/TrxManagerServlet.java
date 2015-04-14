@@ -32,6 +32,8 @@ public class TrxManagerServlet extends BaseServlet {
 			template = "/page_admin/template.jsp";
 		}else if("T".equals(u.getRole())){
 			template = "page_teacher/template.jsp";
+		}else{
+			template = "page_stu/index.html";
 		}
 		
 		if("S".equalsIgnoreCase(target)){

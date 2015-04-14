@@ -13,9 +13,10 @@ header{
 }
 #logoDiv{
 	float:left;
-	width:150px;
+	margin-top:-10px;
+	width:200px;
 	height:100%;
-	background:url('../../images/logo/logo4.png') no-repeat;
+	background:url('../../images/logo/logo_admin.png') no-repeat;
 }
 #title{
 	position:relative;
