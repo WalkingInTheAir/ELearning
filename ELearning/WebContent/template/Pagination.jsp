@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link type="text/css" rel="stylesheet" href="template/pagination.css"/>
+<link type="text/css" rel="stylesheet" href="template/css/pagination.css"/>
 <c:set var="currPage" value="${requestScope.pageInfo.currPage }"></c:set>
 <c:set var="totalPage" value="${requestScope.pageInfo.totalPage }"></c:set>
 <nav id="pageBar" style="display:${(totalPage==null || totalPage == 0)? 'none' : 'block'}">
@@ -51,4 +51,4 @@
 	</ul>
 </nav>
 <!-- TODO -->
-<script type="text/javascript" src="template/pagination.js"></script>
+<script type="text/javascript" src="template/js/pagination.js"></script>

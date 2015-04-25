@@ -20,7 +20,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.json.JSONException;
 
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
@@ -64,7 +63,7 @@ public class DepartServlet extends BaseServlet{
 	 * @throws IOException 
 	 */
 	private void modifyDept(HttpServletRequest request,
-			HttpServletResponse response) throws IOException, JSONException {
+			HttpServletResponse response) throws Exception{
 		
 		String strDeptId = request.getParameter("deptId");
 		String strDeptName = request.getParameter("deptName");
@@ -97,7 +96,7 @@ public class DepartServlet extends BaseServlet{
 	 * @throws IOException 
 	 */
 	private void deleteDept(HttpServletRequest request,
-			HttpServletResponse response) throws IOException, JSONException {
+			HttpServletResponse response) throws Exception {
 		String strDeptId = request.getParameter("deptId");
 		int deptId = -1;
 		if(RegexUtil.isNumStr(strDeptId)){

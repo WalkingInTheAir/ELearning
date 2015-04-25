@@ -26,24 +26,20 @@ public class TrxManagerServlet extends BaseServlet {
 		
 		String target = (String) request.getAttribute("target");
 		String url = (String) request.getAttribute("include");
-		String template = null;	
-		User u = (User) request.getSession().getAttribute("user");
-		if("A".equals(u.getRole())){
-			template = "/page_admin/template.jsp";
-		}else if("T".equals(u.getRole())){
-			template = "page_teacher/template.jsp";
-		}else{
-			template = "page_stu/index.html";
-		}
 		
 		if("S".equalsIgnoreCase(target)){
 			super.invokeServlet(request, response, url);
 		}else if("P".equalsIgnoreCase(target)){
 			super.gotoPage(request, response, url);
-		}else if("T".equalsIgnoreCase(target)){
-			super.gotoTemplatePage(request, response, template);
-		}else {
-			super.gotoTemplatePage(request, response, template);
+		}else{
+			User u = (User) request.getSession().getAttribute("user");
+			if("A".equals(u.getRole())){
+				super.gotoTemplatePage(request, response, "/page_admin/template.jsp");
+			}else if("T".equals(u.getRole())){
+				super.invokeServlet(request, response, "/TeacherServlet");
+			}else{
+				super.invokeServlet(request, response, "/StudentServlet");
+			}
 		}
 	}
 

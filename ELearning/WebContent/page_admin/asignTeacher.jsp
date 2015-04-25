@@ -94,7 +94,7 @@
 				<div class="form-group">
 					<label class="col-sm-11 control-label"></label>
 					<div class="col-sm-1">
-						<input type="button" value="确定" class="btn btn-info" id="asnTeacherBtn"/>
+						<input type="button" value="确定" class="btn btn-primary" id="asnTeacherBtn"/>
 					</div>
 				</div>
 			</div>

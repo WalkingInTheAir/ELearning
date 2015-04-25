@@ -28,5 +28,9 @@ public interface ICourseService {
 
 	public ResultMessage changeCourseTeacher(int classId, int courseId, int teacherId);
 	
-	//public List<Course> queryToList(String conditions, Object[] params);
+	public List<Course> getCourseByStuId(int stuId);
+	
+	public List<Course> getCoursesByTeacherId(int teacherId);
+	
+	public Course getCourseById(int courseId);
 }

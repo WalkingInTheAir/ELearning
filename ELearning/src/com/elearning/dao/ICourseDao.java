@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
+import com.core.jdbc.converter.IResultSetConverter;
 import com.elearning.domain.Course;
 import com.elearning.domain.Department;
 
@@ -29,4 +30,8 @@ public interface ICourseDao {
 	public PageContent<Course> queryClassCourses(int clsId, PageInfo p) throws Exception;
 
 	public int updateCourseTeacher(int classId, int courseId, int teacherId) throws Exception;
+	
+	public List<Course> queryCourses(String sql, Object[] params, IResultSetConverter<Course> converter) throws Exception;
+	
+	public Course getCourseById(int courseId) throws Exception;
 }

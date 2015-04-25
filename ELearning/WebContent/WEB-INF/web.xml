@@ -62,9 +62,9 @@
 	</servlet>
 	<servlet>
 		<description></description>
-		<display-name>LoginServlet</display-name>
-		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>com.elearning.web.servlet.LoginServlet</servlet-class>
+		<display-name>SecServlet</display-name>
+		<servlet-name>SecServlet</servlet-name>
+		<servlet-class>com.elearning.web.servlet.SecServlet</servlet-class>
 	</servlet>
 	<jsp-config>
 		<taglib>
@@ -113,7 +113,7 @@
 		<url-pattern>/StudentServlet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/LoginServlet</url-pattern>
+		<servlet-name>SecServlet</servlet-name>
+		<url-pattern>/SecServlet</url-pattern>
 	</servlet-mapping>
 </web-app>

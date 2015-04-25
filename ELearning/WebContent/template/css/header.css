@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+#logo{
+    float:left;
+    width:200px;
+    height:50px;
+    background:url("../../images/logo/logo_stu.png") no-repeat;
+}
+
+#headerA a{
+	cursor:pointer;
+}

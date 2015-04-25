@@ -3,8 +3,10 @@ package com.elearning.web.servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -14,10 +16,14 @@ import com.core.regex.util.RegexUtil;
 import com.core.showmsg.bean.ResultMessage;
 import com.core.showmsg.bean.ResultMessageFactory;
 import com.elearning.domain.Clas;
+import com.elearning.domain.Course;
 import com.elearning.domain.Department;
 import com.elearning.domain.Student;
+import com.elearning.domain.User;
+import com.elearning.service.ICourseService;
 import com.elearning.service.IDepartService;
 import com.elearning.service.IStudentService;
+import com.elearning.service.impl.CourseServiceImpl;
 import com.elearning.service.impl.DepartServiceImpl;
 import com.elearning.service.impl.StudentServiceImpl;
 
@@ -26,11 +32,13 @@ public class StudentServlet extends BaseServlet {
 	private static final long serialVersionUID = -7057584899664197419L;
 	private IStudentService stuSev = new StudentServiceImpl();
 	private IDepartService deptSev = new DepartServiceImpl();
+	private ICourseService courSev = new CourseServiceImpl();
 	@Override
 	protected void perfom(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
-		if ("showPage".equals(method)) {
+		if(null == method){	//go to student index page
+			this.gotoIndex(request, response);
+		}else if ("showPage".equals(method)) {
 			this.showPage(request, response);
 		} else if ("addStudent".equals(method)) {
 			this.addStudent(request, response);
@@ -40,7 +48,44 @@ public class StudentServlet extends BaseServlet {
 			this.modifyStudent(request, response);
 		} else if ("addStudents".equals(method)) {
 			this.addStudents(request, response);
+		} else if("coursePage".equals(method)){
+			this.gotoCoursePage(request, response);
 		}
+	}
+
+	private void gotoCoursePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String strCourseId = request.getParameter("courseId");
+		String item = request.getParameter("item");
+		
+		String includeJsp = "courseIndex.jsp";
+		if ("outline".equals(item)) {
+
+		} else if ("courseware".equals(item)) {
+
+		} else if ("video".equals(item)) {
+
+		} else if ("task".equals(item)) {
+
+		} else if ("comunicate".equals(item)) {
+
+		} else if ("FAQ".equals(item)) {
+
+		} else{
+			
+		}
+		int courseId = RegexUtil.isNumStr(strCourseId) ? Integer.parseInt(strCourseId) : -1;
+		Course c = courSev.getCourseById(courseId);
+		request.setAttribute("course", c);
+		request.setAttribute("include", includeJsp);
+		super.gotoTemplatePage(request, response, "page_stu/template.jsp");
+	}
+
+	private void gotoIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		User u = (User) request.getSession().getAttribute("user");
+		int userId = u.getId();
+		List<Course> courses = courSev.getCourseByStuId(userId);
+		request.setAttribute("courses", courses);
+		request.getRequestDispatcher("page_stu/index.jsp").forward(request, response);
 	}
 
 	private void addStudents(HttpServletRequest request,

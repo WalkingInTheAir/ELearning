@@ -1,11 +1,16 @@
 package com.elearning.domain;
 
-public class Course {
+import java.io.Serializable;
 
+public class Course implements Serializable{
+
+	private static final long serialVersionUID = -2232405224806108084L;
 	private int id;
 	private String name;
 	private String relativeId;
 	private String relativeName;
+	private String outline;
+	private String desc;
 	private CourseType ct;
 	private Department dept;
 	private Teacher teacher;
@@ -73,5 +78,21 @@ public class Course {
 	public void setClas(Clas clas) {
 		this.clas = clas;
 	}
-	
+
+	public String getOutline() {
+		return outline;
+	}
+
+	public void setOutline(String outline) {
+		this.outline = outline;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
 }

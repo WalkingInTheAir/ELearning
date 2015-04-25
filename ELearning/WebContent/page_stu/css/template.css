@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+/*箭头*/
+._navlist .glyphicon {
+	float: right;
+	padding: 4px;
+}
+
+#sideMenu {
+	position: fixed;
+	top: 60px;
+	left: 10px;
+}
+.courseName{
+	width:100%;
+	text-align:center;
+}
+/*主内容区 start*/
+#_content {
+	border:1px solid;
+	height:1500px;
+	float: left;
+	width: 75%;
+	margin-top: 100px;
+	margin-left: 22%;
+	padding: 0;
+}
+
+.tab-pane{
+	margin-top:20px;
+}
+.tab-pane input[type="text"]{
+	max-width:300px;
+}
+/*主内容区 end*/

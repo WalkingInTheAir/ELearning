@@ -10,7 +10,7 @@ import com.elearning.domain.User;
 import com.elearning.service.IUserService;
 import com.elearning.service.impl.UserServiceImpl;
 
-public class LoginServlet extends BaseServlet {
+public class SecServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 5648566968704748804L;
 	private IUserService uSer = new UserServiceImpl();
@@ -20,7 +20,14 @@ public class LoginServlet extends BaseServlet {
 		
 		if("login".equals(method)){
 			this.login(request, response);
+		}else if("logout".equals(method)){
+			this.logout(request, response);
 		}
+	}
+
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.getSession().invalidate();
+		response.getWriter().println("<script type=\"text/javascript\">window.location.href='login.html'</script>");
 	}
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws IOException {

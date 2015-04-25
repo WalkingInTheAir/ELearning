@@ -3,7 +3,7 @@ package com.elearning.web.tag;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.Tag;
 
-import org.json.JSONObject;
+import net.sf.json.JSONObject;
 
 /**
  * 动态模板内容标签 使用一套模板页面，动态生成模板内容
@@ -34,9 +34,11 @@ public class PageContentTag extends BaseTag {
 				String strTabIndex = (String) super.req
 						.getAttribute("tabIndex");
 				String regex = "[0-9]+";
-				if (null != strMenuIndex && null != strItemIndex) {
+				if (null != strMenuIndex) {
 					menuIndex = strMenuIndex.matches(regex) ? Integer
 							.parseInt(strMenuIndex) : -1;
+				}
+				if (null != strItemIndex) {
 					itemIndex = strItemIndex.matches(regex) ? Integer
 							.parseInt(strItemIndex) : -1;
 				}

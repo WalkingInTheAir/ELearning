@@ -1,6 +1,8 @@
 package com.elearning.dao.impl;
 
-import com.core.jdbc.converter.ConverterFactory;
+import java.sql.ResultSet;
+
+import com.core.jdbc.converter.IResultSetConverter;
 import com.elearning.dao.IUserDao;
 import com.elearning.domain.User;
 
@@ -24,11 +26,28 @@ public class UserDaoImpl extends ABaseDao implements IUserDao{
 			return false;
 		}
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT COUNT(*) FROM ").append(tbName).append(" WHERE ")
-				.append(colPre + "_NUMBER = ? ").append(" AND ").append(colPre + "_PASSWORD = ?");
+		sql.append("SELECT ")
+			.append(colPre + "_id,")
+			.append(colPre + "_number,")
+			.append(colPre + "_name,")
+			.append(colPre + "_password ")
+			.append(" FROM ").append(tbName)
+			.append(" WHERE ")
+			.append(colPre + "_NUMBER = ? ").append(" AND ").append(colPre + "_PASSWORD = ?");
 
-		return super.queryToBean(sql.toString(), new Object[]{user.getNum(), user.getPassword()},
-				ConverterFactory.getConverter(Integer.class)) > 0;
+		super.queryToBean(sql.toString(), new Object[]{user.getNum(), user.getPassword()},
+				new IResultSetConverter<User>(){
+					@Override
+					public User conver(ResultSet rs) throws Exception {
+						user.setId(rs.getInt(1));
+						user.setName(rs.getString(3));
+						user.setNum(rs.getString(2));
+						user.setPassword(rs.getString(4));
+						return user;
+					}
+			
+		});
+		return user.getId() > 0;
 	}
 
 }

@@ -34,7 +34,7 @@ public class CourseDaoImpl extends ABaseDao implements ICourseDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String insertSql = "INSERT INTO TB_COURSE VALUES(NULL, ?, ?, ?)";
+			String insertSql = "INSERT INTO TB_COURSE (COURSE_NAME, F_CT_ID, F_RELATIVE_ID) VALUES(?, ?, ?)";
 			conn = DBManager.getConnection();
 			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS);
@@ -250,6 +250,30 @@ public class CourseDaoImpl extends ABaseDao implements ICourseDao {
 	public int updateCourseTeacher(int classId, int courseId, int teacherId) throws Exception {
 		String sql = "UPDATE TB_TEACHER_COURSE_CLASS SET F_TEACHER_ID = ? WHERE F_COURSE_ID = ? AND F_CLS_ID = ?";
 		return super.update(sql, new Object[]{teacherId, courseId, classId});
+	}
+
+	@Override
+	public List<Course> queryCourses(String sql, Object[] params,
+			IResultSetConverter<Course> converter) throws Exception {
+		
+		return super.queryToList(sql, params, converter);
+	}
+
+	@Override
+	public Course getCourseById(int courseId) throws Exception {
+		String sql = "SELECT * FROM TB_COURSE WHERE COURSE_ID = ?";
+		return super.queryToBean(sql, new Object[]{courseId}, new IResultSetConverter<Course>(){
+
+			@Override
+			public Course conver(ResultSet rs) throws Exception {
+				Course c = new Course();
+				c.setId(rs.getInt("COURSE_ID"));
+				c.setName(rs.getString("COURSE_NAME"));
+				c.setDesc(rs.getString("COURSE_DESC"));
+				c.setOutline(rs.getString("COURSE_OUTLINE"));
+				return c;
+			}
+		});
 	}
 
 }

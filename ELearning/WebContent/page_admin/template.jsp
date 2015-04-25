@@ -11,19 +11,35 @@
 <path:basepath/>
 <link rel="stylesheet" href='showmsg/ShowMsg.css'>
 <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="template/css/common.css" />
+<link rel="stylesheet" href="template/css/header.css" />
+<link rel="stylesheet" href="template/css/template.css">
 <link rel="stylesheet" href="page_admin/css/template.css">
 </head>
 <body>
 	<!-- header区 -->
-	<header>
+	<%-- <header>
 		<div id="logoDiv"> </div>
 		<h3 id="title1"></h3>	
 		<div id="loginInfoDiv">
-			<span id="loginInfo"><span class="glyphicon glyphicon-user"></span><c:out value="${sessionScope.user.num }"> </c:out></span>
-			<span id="logout"><span class="glyphicon glyphicon glyphicon-off"></span><a href="#">退出</a></span>
+			<span id="loginInfo"><a><span class="glyphicon glyphicon-user"></span><c:out value="${sessionScope.user.name }"> </c:out></a></span>
+			<span id="logout"><a><span class="glyphicon glyphicon glyphicon-off"></span>退出</a></span>
 		</div>	
-	</header>
-	<hr id="headerHr"/>
+	</header> --%>
+<%-- 	<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" id="logo">
+        </div>
+        <div class="navbar-collapse collapse" role="navigation">
+            <ul class="nav navbar-nav navbar-right hidden-sm">
+                <li><a><span class="glyphicon glyphicon-user"></span><c:out value="${sessionScope.user.name }"> </c:out></a></li>
+                <li><a><span class="glyphicon glyphicon glyphicon-off"></span>退出</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+	<hr id="headerHr"/> --%>
+<%@include file="../template/header.jsp" %>
 	<!-- 菜单栏 -->
 	<form id="MenuForm" name="MenuForm" action="TrxManager" method="post" class="form-horizontal" role="form">
 		<input type="hidden" id="menuIndex" name="menuIndex" />
@@ -35,7 +51,7 @@
 		<input type="hidden" id="currPage" value="${requestScope.pageInfo.currPage }" />
 		<input type="hidden" id="pageSize" value="${requestScope.pageInfo.pageSize }" />
 	</form>
-	<div id="sideMenu" style="float: left; width: 20%;">
+	<div id="sideMenu">
 		<div class="panel _sidePanel">
 			<a href="#menu1" class="collapsed _navTitle" data-toggle="collapse"
 				data-parent="#sideMenu">机构管理<span

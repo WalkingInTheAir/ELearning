@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+a, a:hover{
+    text-decoration: none;
+}
+h2{
+    font-family: "微软雅黑";
+}
+input, button, select, textarea {
+	outline: none;
+}
+
+a:link, a:hover, a:visited, a:active{
+	text-decoration: none;
+}

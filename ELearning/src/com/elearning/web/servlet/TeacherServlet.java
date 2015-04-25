@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -13,10 +14,14 @@ import com.core.jdbc.bean.PageInfo;
 import com.core.regex.util.RegexUtil;
 import com.core.showmsg.bean.ResultMessage;
 import com.core.showmsg.bean.ResultMessageFactory;
+import com.elearning.domain.Course;
 import com.elearning.domain.Department;
 import com.elearning.domain.Teacher;
+import com.elearning.domain.User;
+import com.elearning.service.ICourseService;
 import com.elearning.service.IDepartService;
 import com.elearning.service.ITeacherService;
+import com.elearning.service.impl.CourseServiceImpl;
 import com.elearning.service.impl.DepartServiceImpl;
 import com.elearning.service.impl.TeacherServiceImpl;
 
@@ -25,11 +30,14 @@ public class TeacherServlet extends BaseServlet{
 	private static final long serialVersionUID = -1589142886934834337L;
 	private ITeacherService teaSer = new TeacherServiceImpl();
 	private IDepartService deptSer = new DepartServiceImpl();
+	private ICourseService couSer = new CourseServiceImpl();
+	
 	@Override
 	protected void perfom(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
-		if ("addTeacher".equals(method)) {
+		if(null == method){
+			gotoIndex(request, response);
+		}else if ("addTeacher".equals(method)) {
 			addTeacher(request, response);
 		} else if ("addTeachers".equals(method)) {
 			addTeachers(request, response);
@@ -39,8 +47,29 @@ public class TeacherServlet extends BaseServlet{
 			deleteTeacher(request, response);
 		} else if ("modifyTeacher".equals(method)) {
 			modifyTeacher(request, response);
+		}else if("backOperate".equals(method)){
+			backOperate(request, response);
 		}
 		return;
+	}
+
+
+	private void backOperate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String item = request.getParameter("item");
+		request.setAttribute("include", "courseInfo.jsp");
+		HttpSession session = request.getSession(false);
+		List<Course> cs = (List<Course>) session.getAttribute("courses");
+		request.setAttribute("course", cs.get(0));
+		this.gotoTemplate(request, response);
+	}
+
+
+	private void gotoIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession(false);
+		User teacher = (User) session.getAttribute("user");
+		List<Course> cs = couSer.getCoursesByTeacherId(teacher.getId());
+		session.setAttribute("courses", cs);
+		this.gotoTemplate(request, response);
 	}
 
 	private void modifyTeacher(HttpServletRequest request,
@@ -158,4 +187,7 @@ public class TeacherServlet extends BaseServlet{
 		response.getWriter().println(rm.toJSONObj());
 	}
 
+	private void gotoTemplate(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		super.gotoTemplatePage(request, response, "page_teacher/template.jsp");
+	}
 }
