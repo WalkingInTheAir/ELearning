@@ -23,9 +23,6 @@ public class PaginationTag extends BaseTag {
 
 	@Override
 	public int doEndTag() throws JspException {
-		int currPage = 1;
-		int totalPage = 10;
-		StringBuffer out = new StringBuffer();
 		try {
 			super.pageContext.include("../template" + File.separator + "Pagination.jsp");
 		} catch (ServletException e) {

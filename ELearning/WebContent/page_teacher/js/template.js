@@ -13,6 +13,7 @@ $(function(){
 		$("#menuIndex").val(menuIndex);
 		$("#itemIndex").val(itemIndex);
 		$("#include").val(includePage);
+		$("#courseId").val($currMenu.data("courseid"));
 	}
 	
 	$("#sideMenu ul li a").bind("click", function(event){
@@ -22,6 +23,7 @@ $(function(){
 		var menuIndex = obj.parents(".panel").index();
 		var itemIndex = obj.parent().index();
 		var item = obj.data("item");
+		var courseId = obj.parents("ul:first").data("courseid");
 		//请求页面
 		var include = obj.attr("href").replace("#","");
 		var $form = $("#MenuForm");
@@ -30,6 +32,7 @@ $(function(){
 		$("#menuIndex").val(menuIndex);
 		$("#itemIndex").val(itemIndex);
 		$("#item").val(item);
+		$("#courseId").val(courseId);
 		$("#include").val(include+"?method=backOperate");
 		$("#target").val(target);
 		$form.attr("method", "post");

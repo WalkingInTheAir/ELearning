@@ -4,8 +4,7 @@ package com.core.showmsg.bean;
  * @author BlackHorse
  * @version 1.0
  */
-public class ResultMessageFactory {
-
+public class ResultMessageFactory{
 	private static ResultMessage getResultMessageInstance(ResultType type) {
 		return new ResultMessage(type);
 	}

@@ -21,7 +21,7 @@ public interface ICourseDao {
 
 	public int deleteCourse(int courseId) throws Exception;
 
-	public int updateCourse(Course c) throws Exception;
+	public int updateCourse(String updateCol, Object[] params) throws Exception;
 
 	public List<Department> getCdtClasses(int courseId) throws Exception;
 	

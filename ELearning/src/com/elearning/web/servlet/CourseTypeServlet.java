@@ -1,13 +1,15 @@
 package com.elearning.web.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
-import com.core.regex.util.RegexUtil;
 import com.core.showmsg.bean.ResultMessage;
 import com.core.showmsg.bean.ResultMessageFactory;
+import com.core.util.regex.RegexUtil;
 import com.elearning.domain.CourseType;
 import com.elearning.service.ICourseTypeService;
 import com.elearning.service.impl.CourseTypeServiceImpl;

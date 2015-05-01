@@ -17,7 +17,7 @@ import com.core.jdbc.bean.PageInfo;
 import com.core.jdbc.converter.ConverterFactory;
 import com.core.jdbc.converter.IResultSetConverter;
 import com.core.jdbc.helper.DBManager;
-import com.core.regex.util.RegexUtil;
+import com.core.util.regex.RegexUtil;
 import com.elearning.dao.ICourseDao;
 import com.elearning.domain.Clas;
 import com.elearning.domain.Course;
@@ -153,9 +153,9 @@ public class CourseDaoImpl extends ABaseDao implements ICourseDao {
 	}
 
 	@Override
-	public int updateCourse(Course c) throws Exception {
-		String sql = "UPDATE TB_COURSE SET COURSE_NAME = ? WHERE COURSE_ID = ?";
-		return super.update(sql, new Object[]{c.getName(), c.getId()});
+	public int updateCourse(String updateCol, Object[] params) throws Exception {
+		String sql = "UPDATE TB_COURSE SET " + updateCol + " WHERE COURSE_ID = ?";
+		return super.update(sql, params);
 	}
 
 	@Override

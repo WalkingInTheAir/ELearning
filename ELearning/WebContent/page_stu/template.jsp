@@ -38,7 +38,7 @@
             <li><a href="/StudentServlet" data-item="courseware" target="S">课件<span class="glyphicon glyphicon-chevron-right"></span></a></li>
             <li><a href="/StudentServlet" data-item="video" target="S">教学视频<span class="glyphicon glyphicon-chevron-right"></span></a></li>
             <li><a href="/StudentServlet" data-item="task" target="S">作业<span class="glyphicon glyphicon-chevron-right"></span></a></li>
-            <li><a href="/StudentServlet" data-item="comunicate" target="S">交流区<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+            <li><a href="/StudentServlet" data-item="communicate" target="S">交流区<span class="glyphicon glyphicon-chevron-right"></span></a></li>
             <li><a href="/StudentServlet" data-item="FAQ" target="S">FAQ<span class="glyphicon glyphicon-chevron-right"></span></a></li>
         </ul>
     </div>
@@ -46,6 +46,7 @@
 <script type="text/javascript" src="plugin/jquery-2.1.1.js"></script>
 <script type="text/javascript" src="plugin/jquery.form.js"></script>
 <script type="text/javascript" src="plugin/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="page_stu/js/template.js"></script>
 <script type="text/javascript" src="showmsg/ShowMsg.js"></script>
 <!-- 主要内容区 -->

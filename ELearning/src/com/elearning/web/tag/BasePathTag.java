@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
-import com.core.path.util.PathUtil;
+import com.core.util.path.PathUtil;
 
 /**
  * 默认路径标签

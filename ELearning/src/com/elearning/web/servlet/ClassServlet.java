@@ -10,9 +10,9 @@ import org.apache.commons.lang.StringUtils;
 
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
-import com.core.regex.util.RegexUtil;
 import com.core.showmsg.bean.ResultMessage;
 import com.core.showmsg.bean.ResultMessageFactory;
+import com.core.util.regex.RegexUtil;
 import com.elearning.domain.Clas;
 import com.elearning.domain.Department;
 import com.elearning.domain.Major;

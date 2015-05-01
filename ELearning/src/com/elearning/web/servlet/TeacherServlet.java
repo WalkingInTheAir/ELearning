@@ -11,18 +11,24 @@ import org.apache.commons.lang.StringUtils;
 
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
-import com.core.regex.util.RegexUtil;
 import com.core.showmsg.bean.ResultMessage;
 import com.core.showmsg.bean.ResultMessageFactory;
+import com.core.util.regex.RegexUtil;
 import com.elearning.domain.Course;
+import com.elearning.domain.CourseWare;
 import com.elearning.domain.Department;
+import com.elearning.domain.FAQ;
 import com.elearning.domain.Teacher;
 import com.elearning.domain.User;
 import com.elearning.service.ICourseService;
+import com.elearning.service.ICourseWareService;
 import com.elearning.service.IDepartService;
+import com.elearning.service.IFAQService;
 import com.elearning.service.ITeacherService;
 import com.elearning.service.impl.CourseServiceImpl;
+import com.elearning.service.impl.CourseWareServiceImpl;
 import com.elearning.service.impl.DepartServiceImpl;
+import com.elearning.service.impl.FAQServiceImpl;
 import com.elearning.service.impl.TeacherServiceImpl;
 
 public class TeacherServlet extends BaseServlet{
@@ -31,6 +37,8 @@ public class TeacherServlet extends BaseServlet{
 	private ITeacherService teaSer = new TeacherServiceImpl();
 	private IDepartService deptSer = new DepartServiceImpl();
 	private ICourseService couSer = new CourseServiceImpl();
+	private IFAQService faqSer = new FAQServiceImpl();
+	private ICourseWareService cwSer = new CourseWareServiceImpl();
 	
 	@Override
 	protected void perfom(HttpServletRequest request,
@@ -56,11 +64,98 @@ public class TeacherServlet extends BaseServlet{
 
 	private void backOperate(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String item = request.getParameter("item");
-		request.setAttribute("include", "courseInfo.jsp");
+		int courseId = RegexUtil.isNumStr(request.getParameter("courseId")) ? Integer.parseInt(request.getParameter("courseId")) : -1;
+		String isAjaxPost = request.getParameter("ajaxPost");
+		String include = "courseInfo.jsp";
+		if("courseInfo".equals(item)){
+			
+		}else if("courseware".equals(item)){
+			this.getCourseWare(request, response);
+			include = "courseware.jsp";
+		}else if("video".equals(item)){
+			include = "video.jsp";
+		}else if("task".equals(item)){
+			include = "task.jsp";
+		}else if("comunicate".equals(item)){
+			include = "comunicate.jsp";
+		}else if("FAQ".equals(item)){
+			this.getFAQS(request, response);
+			include = "FAQ.jsp";
+		}else{
+			
+		}
+		if(null != isAjaxPost && "T".equals(isAjaxPost)){
+			return;
+		}
+		request.setAttribute("include", include);
 		HttpSession session = request.getSession(false);
+		@SuppressWarnings("unchecked")
 		List<Course> cs = (List<Course>) session.getAttribute("courses");
-		request.setAttribute("course", cs.get(0));
+		if (courseId > 0) {
+			for (Course c : cs) {
+				if (c.getId() == courseId) {
+					request.setAttribute("course", c);
+					break;
+				}
+			}
+		}
 		this.gotoTemplate(request, response);
+	}
+
+
+	private void getCourseWare(HttpServletRequest request, HttpServletResponse response) {
+		PageInfo page = new PageInfo();
+		String currPageStr = request.getParameter("currPage");
+		String pageSizeStr = request.getParameter("pageSize");
+		if(RegexUtil.isNumStr(currPageStr)){
+			page.setCurrPage(Integer.parseInt(currPageStr));
+		}
+		if(RegexUtil.isNumStr(pageSizeStr)){
+			page.setPageSize(Integer.parseInt(pageSizeStr));
+		}
+		page.setPageSize(100);	//不需要分页
+		int courseId = RegexUtil.isNumStr(request.getParameter("courseId")) ? Integer.parseInt(request.getParameter("courseId")) : -1;
+		try {
+			PageContent<CourseWare> cws = this.cwSer.showCourseWares(page, courseId);
+			String isAjaxPost = request.getParameter("ajaxPost");
+			//翻页采用ajax
+			if(null != isAjaxPost && "T".equals(isAjaxPost)){
+				response.getWriter().print(cws.toJSONObj());
+			}else{
+				request.setAttribute("cata", cws);
+				request.setAttribute("pageInfo", cws.getPage());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+	}
+
+
+	private void getFAQS(HttpServletRequest request, HttpServletResponse response) {
+		PageInfo page = new PageInfo();
+		String currPageStr = request.getParameter("currPage");
+		String pageSizeStr = request.getParameter("pageSize");
+		if(RegexUtil.isNumStr(currPageStr)){
+			page.setCurrPage(Integer.parseInt(currPageStr));
+		}
+		if(RegexUtil.isNumStr(pageSizeStr)){
+			page.setPageSize(Integer.parseInt(pageSizeStr));
+		}
+		int courseId = RegexUtil.isNumStr(request.getParameter("courseId")) ? Integer.parseInt(request.getParameter("courseId")) : -1;
+		try {
+			PageContent<FAQ> FAQS = this.faqSer.showFAQs(page, courseId);
+			String isAjaxPost = request.getParameter("ajaxPost");
+			//翻页采用ajax
+			if(null != isAjaxPost && "T".equals(isAjaxPost)){
+				response.getWriter().print(FAQS.toJSONObj());
+			}else{
+				request.setAttribute("cata", FAQS);
+				request.setAttribute("pageInfo", FAQS.getPage());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 
 

@@ -94,6 +94,7 @@
 	<script type="text/javascript" src="plugin/jquery-2.1.1.js"></script>
 	<script type="text/javascript" src="plugin/jquery.form.js"></script>
 	<script type="text/javascript" src="plugin/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" src="page_admin/js/template.js"></script>
 	<script type="text/javascript" src="showmsg/ShowMsg.js"></script>
 	<!-- 主要内容区 -->

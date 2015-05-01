@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
@@ -15,9 +16,10 @@ import org.apache.commons.lang.StringUtils;
 
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
-import com.core.regex.util.RegexUtil;
 import com.core.showmsg.bean.ResultMessage;
 import com.core.showmsg.bean.ResultMessageFactory;
+import com.core.showmsg.bean.ResultType;
+import com.core.util.regex.RegexUtil;
 import com.elearning.domain.Course;
 import com.elearning.domain.CourseType;
 import com.elearning.domain.Department;
@@ -162,21 +164,43 @@ public class CourseServlet extends BaseServlet {
 
 		String strCourseId = request.getParameter("courseId");
 		String courseName = request.getParameter("courseName");
+		String courseDesc = request.getParameter("courseDesc");
+		String courseOutline = request.getParameter("courseOutline");
 
 		ResultMessage rm = null;
 		int courseId = RegexUtil.isNumStr(strCourseId) ? Integer.parseInt(strCourseId) : -1;
 
 		if (courseId <= 0) {
 			rm = ResultMessageFactory.getErrorResult("参数异常，请重试");
-		} else if (StringUtils.isBlank(courseName)) {
+		} else if (StringUtils.isBlank(courseName) && StringUtils.isBlank(courseDesc) && StringUtils.isBlank(courseOutline)) {
 			rm = ResultMessageFactory.getErrorResult("课程名称不能为空");
 		} else {
 			Course c = new Course();
 			c.setId(courseId);
 			c.setName(courseName);
+			c.setDesc(courseDesc);
+			c.setOutline(courseOutline);
 			rm = this.cSer.mdfCourse(c);
 		}
-
+		if(rm.getType().equals(ResultType.SUCCESS)){
+			//跟新session
+			HttpSession session = request.getSession(false);
+			@SuppressWarnings("unchecked")
+			List<Course> cs = (List<Course>) session.getAttribute("courses");
+			if(null != cs && !cs.isEmpty()){
+				for(Course c : cs){
+					if(c.getId() == courseId){
+						if(null != courseDesc){
+							c.setDesc(courseDesc);
+						}
+						if(null != courseOutline){
+							c.setOutline(courseOutline);
+						}
+						break;
+					}
+				}
+			}
+		}
 		response.getWriter().println(rm.toJSONObj());
 	}
 

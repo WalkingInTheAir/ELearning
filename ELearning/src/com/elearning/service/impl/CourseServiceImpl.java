@@ -10,9 +10,9 @@ import org.apache.commons.lang.StringUtils;
 import com.core.jdbc.bean.PageContent;
 import com.core.jdbc.bean.PageInfo;
 import com.core.jdbc.converter.IResultSetConverter;
-import com.core.regex.util.RegexUtil;
 import com.core.showmsg.bean.ResultMessage;
 import com.core.showmsg.bean.ResultMessageFactory;
+import com.core.util.regex.RegexUtil;
 import com.elearning.dao.IClasDao;
 import com.elearning.dao.ICourseDao;
 import com.elearning.dao.impl.ClasDaoImpl;
@@ -124,7 +124,23 @@ public class CourseServiceImpl implements ICourseService {
 	public ResultMessage mdfCourse(Course c) {
 		ResultMessage rm = null;
 		try {
-			if (this.cDao.updateCourse(c) > 0) {
+			List<Object> params = new ArrayList<Object>();
+			StringBuffer updateCol = new StringBuffer();
+			if(null != c.getName()){
+				updateCol.append(" COURSE_NAME = ?,");
+				params.add(c.getName());
+			}
+			if(null != c.getDesc()){
+				updateCol.append(" COURSE_DESC = ?,");
+				params.add(c.getDesc());
+			}
+			if(null != c.getOutline()){
+				updateCol.append(" COURSE_OUTLINE = ?,");
+				params.add(c.getOutline());
+			}
+			params.add(c.getId());
+			updateCol.deleteCharAt(updateCol.lastIndexOf(","));
+			if (this.cDao.updateCourse(updateCol.toString(), params.toArray()) > 0) {
 				rm = ResultMessageFactory.getSuccessResult("修改成功");
 			} else {
 				rm = ResultMessageFactory.getErrorResult("修改失败");

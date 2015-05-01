@@ -33,10 +33,37 @@
         , serverUrl: URL + "jsp/controller.jsp"
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
-        
-        , toolbars: [["preview","bold","italic","underline","fontborder","strikethrough","superscript","subscript","removeformat","formatmatch","insertorderedlist","insertunorderedlist","|","fontfamily","customstyle","indent"]]
-        //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
-        //,labelMap:{
+		        ,
+		toolbars : [ [ 'undo', 'redo', "bold", "italic",
+				"underline", "fontborder", "strikethrough", "superscript",
+				"subscript", "removeformat", "formatmatch",
+				"insertorderedlist", "insertunorderedlist", "|", "fontfamily",
+				"paragraph", "customstyle", "indent"
+		/*
+		 * 'fullscreen', 'source', '|', 'undo', 'redo', '|', 'bold', 'italic',
+		 * 'underline', 'fontborder', 'strikethrough', 'superscript',
+		 * 'subscript', 'removeformat', 'formatmatch', 'autotypeset',
+		 * 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor',
+		 * 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc',
+		 * '|', 'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+		 * 'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+		 * 'directionalityltr', 'directionalityrtl', 'indent', '|',
+		 * 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify',
+		 * '|', 'touppercase', 'tolowercase', '|', 'link', 'unlink', 'anchor',
+		 * '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+		 * 'simpleupload', 'insertimage', 'emotion', 'scrawl', 'insertvideo',
+		 * 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode',
+		 * 'webapp', 'pagebreak', 'template', 'background', '|', 'horizontal',
+		 * 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+		 * 'inserttable', 'deletetable', 'insertparagraphbeforetable',
+		 * 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells',
+		 * 'mergeright', 'mergedown', 'splittocells', 'splittorows',
+		 * 'splittocols', 'charts', '|', 'print', 'preview', 'searchreplace',
+		 * 'help', 'drafts'
+		 */
+		]]
+        // 当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
+        // ,labelMap:{
         //    'anchor':'', 'undo':''
         //}
 
@@ -85,7 +112,17 @@
 
         //,autoClearEmptyNode : true //getContent时，是否删除空的inlineElement节点（包括嵌套的情况）
 
+        //启用自动保存
+        //,enableAutoSave: true
+        //自动保存间隔时间， 单位ms
+        //,saveInterval: 500
+
+        //,fullscreen : false //是否开启初始化时即全屏，默认关闭
+
         //,imagePopup:true      //图片操作的浮层开关，默认打开
+
+        //,autoSyncData:true //自动同步编辑器要提交的数据
+        //,emotionLocalization:false //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
 
         //粘贴只保留标签，去除标签所有属性
         //,retainOnlyLabelPasted: false
@@ -170,6 +207,26 @@
         //    { label:'',name:'timesNewRoman',val:'times new roman'}
         //]
 
+        //fontsize
+        //字号
+        //,'fontsize':[10, 11, 12, 14, 16, 18, 20, 24, 36]
+
+        //paragraph
+        //段落格式 值留空时支持多语言自动识别，若配置，则以配置值为准
+        //,'paragraph':{'p':'', 'h1':'', 'h2':'', 'h3':'', 'h4':'', 'h5':'', 'h6':''}
+
+        //rowspacingtop
+        //段间距 值和显示的名字相同
+        //,'rowspacingtop':['5', '10', '15', '20', '25']
+
+        //rowspacingBottom
+        //段间距 值和显示的名字相同
+        //,'rowspacingbottom':['5', '10', '15', '20', '25']
+
+        //lineheight
+        //行内间距 值和显示的名字相同
+        //,'lineheight':['1', '1.5','1.75','2', '3', '4', '5']
+
         //customstyle
         //自定义样式，不支持国际化，此处配置值即可最后显示值
         //block的元素是依据设置段落的逻辑设置的，inline的元素依据BIU的逻辑设置
@@ -186,8 +243,35 @@
         //    {tag:'span',name:'hi', label:'', style:'font-style:italic;font-weight:bold;color:rgb(51, 153, 204)'}
         //]
 
+        //打开右键菜单功能
+        //,enableContextMenu: true
+        //右键菜单的内容，可以参考plugins/contextmenu.js里边的默认菜单的例子，label留空支持国际化，否则以此配置为准
+        //,contextMenu:[
+        //    {
+        //        label:'',       //显示的名称
+        //        cmdName:'selectall',//执行的command命令，当点击这个右键菜单时
+        //        //exec可选，有了exec就会在点击时执行这个function，优先级高于cmdName
+        //        exec:function () {
+        //            //this是当前编辑器的实例
+        //            //this.ui._dialogs['inserttableDialog'].open();
+        //        }
+        //    }
+        //]
+
         //快捷菜单
         //,shortcutMenu:["fontfamily", "fontsize", "bold", "italic", "underline", "forecolor", "backcolor", "insertorderedlist", "insertunorderedlist"]
+
+        //elementPathEnabled
+        //是否启用元素路径，默认是显示
+        ,elementPathEnabled : false
+
+        //wordCount
+        ,wordCount:false          //是否开启字数统计
+        //,maximumWords:10000       //允许的最大字符数
+        //字数统计提示，{#count}代表当前字数，{#leave}代表还可以输入多少字符数,留空支持多语言自动切换，否则按此配置显示
+        //,wordCountMsg:''   //当前已输入 {#count} 个字符，您还可以输入{#leave} 个字符
+        //超出字数限制提示  留空支持多语言自动切换，否则按此配置显示
+        //,wordOverFlowMsg:''    //<span style="color:red;">你输入的字符个数已经超出最大允许值，服务器可能会拒绝保存！</span>
 
         //tab
         //点击tab键时移动的距离,tabSize倍数，tabNode什么字符做为单位
@@ -201,11 +285,71 @@
         //removeFormatAttributes属性
         //,removeFormatAttributes:'class,style,lang,width,height,align,hspace,valign'
 
+        //undo
+        //可以最多回退的次数,默认20
+        //,maxUndoCount:20
+        //当输入的字符数超过该值时，保存一次现场
+        //,maxInputCount:1
+
+        //autoHeightEnabled
+        // 是否自动长高,默认true
+        //,autoHeightEnabled:true
+
         //scaleEnabled
         //是否可以拉伸长高,默认true(当开启时，自动长高失效)
-        //,scaleEnabled:false
+        ,scaleEnabled:false
         //,minFrameWidth:800    //编辑器拖动时最小宽度,默认800
         //,minFrameHeight:220  //编辑器拖动时最小高度,默认220
+
+        //autoFloatEnabled
+        //是否保持toolbar的位置不动,默认true
+        //,autoFloatEnabled:true
+        //浮动时工具栏距离浏览器顶部的高度，用于某些具有固定头部的页面
+        //,topOffset:30
+        //编辑器底部距离工具栏高度(如果参数大于等于编辑器高度，则设置无效)
+        //,toolbarTopOffset:400
+
+        //pageBreakTag
+        //分页标识符,默认是_ueditor_page_break_tag_
+        //,pageBreakTag:'_ueditor_page_break_tag_'
+
+        //autotypeset
+        //自动排版参数
+        //,autotypeset: {
+        //    mergeEmptyline: true,           //合并空行
+        //    removeClass: true,              //去掉冗余的class
+        //    removeEmptyline: false,         //去掉空行
+        //    textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+        //    imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+        //    pasteFilter: false,             //根据规则过滤没事粘贴进来的内容
+        //    clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
+        //    clearFontFamily: false,         //去掉所有的内嵌字体，使用编辑器默认的字体
+        //    removeEmptyNode: false,         // 去掉空节点
+        //    //可以去掉的标签
+        //    removeTagNames: {标签名字:1},
+        //    indent: false,                  // 行首缩进
+        //    indentValue : '2em',            //行首缩进的大小
+        //    bdc2sb: false,
+        //    tobdc: false
+        //}
+
+        //tableDragable
+        //表格是否可以拖拽
+        //,tableDragable: true
+
+        //,disabledTableInTable:true  //禁止表格嵌套
+
+        //sourceEditor
+        //源码的查看方式,codemirror 是代码高亮，textarea是文本框,默认是codemirror
+        //注意默认codemirror只能在ie8+和非ie中使用
+        //,sourceEditor:"codemirror"
+        //如果sourceEditor是codemirror，还用配置一下两个参数
+        //codeMirrorJsUrl js加载的路径，默认是 URL + "third-party/codemirror/codemirror.js"
+        //,codeMirrorJsUrl:URL + "third-party/codemirror/codemirror.js"
+        //codeMirrorCssUrl css加载的路径，默认是 URL + "third-party/codemirror/codemirror.css"
+        //,codeMirrorCssUrl:URL + "third-party/codemirror/codemirror.css"
+        //编辑器初始化完成后是否进入源码模式，默认为否。
+        //,sourceEditorFirst:false
 
         //iframeUrlMap
         //dialog内容的路径 ～会被替换成URL,垓属性一旦打开，将覆盖所有的dialog的默认路径
@@ -213,6 +357,8 @@
         //    'anchor':'~/dialogs/anchor/anchor.html',
         //}
 
+        //webAppKey 百度应用的APIkey，每个站长必须首先去百度官网注册一个key后方能正常使用app功能，注册介绍，http://app.baidu.com/static/cms/getapikey.html
+        //, webAppKey: ""
     };
 
     function getUEBasePath(docUrl, confUrl) {

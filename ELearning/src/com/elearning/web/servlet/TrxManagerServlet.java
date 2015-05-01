@@ -3,7 +3,7 @@ package com.elearning.web.servlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.core.path.util.WebUtil;
+import com.core.util.path.WebUtil;
 import com.elearning.domain.User;
 
 public class TrxManagerServlet extends BaseServlet {
