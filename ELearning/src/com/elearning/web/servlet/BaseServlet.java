@@ -49,7 +49,7 @@ public abstract class BaseServlet extends HttpServlet {
 	protected void invokeServlet(HttpServletRequest req,
 			HttpServletResponse res, String url) throws Exception {
 		req.setAttribute("target", "S");
-		req.getSession().getServletContext().getRequestDispatcher(url).forward(req, res);
+		req.getServletContext().getRequestDispatcher(url).forward(req, res);
 		
 	}
 
