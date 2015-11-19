@@ -9,7 +9,7 @@ import com.elearning.domain.User;
 public class UserDaoImpl extends ABaseDao implements IUserDao{
 
 	@Override
-	public boolean isExist(User user) throws Exception {
+	public boolean isExist(final User user) throws Exception {
 		String tbName = null;
 		String colPre = null;
 		if ("A".equals(user.getRole())) {

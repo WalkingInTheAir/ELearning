@@ -110,7 +110,7 @@ public class CourseDaoImpl extends ABaseDao implements ICourseDao {
 	}
 
 	@Override
-	public PageContent<Course> queryCourses(String rltTabName, String preName, String conditions, Object[] params,
+	public PageContent<Course> queryCourses(String rltTabName, final String preName, String conditions, Object[] params,
  PageInfo page) throws Exception {
 		StringBuffer sb = new StringBuffer();
 		sb.append("SELECT COURSE_ID, COURSE_NAME, F_CT_ID, CT_NAME, F_RELATIVE_ID");
